@@ -1,0 +1,19 @@
+{
+    "main": {
+        "title": "Welcome to Moviefan project",
+        "subtitle": "This is your homepage",
+        "logged": {
+            "message": "You are logged in as user \"{{username}}\"."
+        },
+        "question": "This application is based on JHipster. Admin role can add, delete or edit movies, genres. User roles can add movies to their favorite lists.",
+        "link": {
+            "homepage": "JHipster homepage",
+            "blog": "Ziya Ozkan Gokturk Blog",
+            "linkedin": "Ziya Ozkan Gokturk Linkedin",
+            "contact": "contact @ozkangokturk on Twitter"
+        },
+        "like": "If you like this application, don't forget to give us a star on Jhipster and moviefan applications",
+        "jhipster": "JHipster",
+        "moviefan": "Moviefan"
+    }
+}

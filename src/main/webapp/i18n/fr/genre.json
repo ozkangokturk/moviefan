@@ -1,0 +1,20 @@
+{
+    "moviefanApp": {
+        "genre" : {
+            "home": {
+                "title": "Genres",
+                "createLabel": "Créer un nouveau Genre",
+                "createOrEditLabel": "Créer ou éditer un Genre"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Genre {{ id }} ?"
+            },
+            "detail": {
+                "title": "Genre"
+            },
+            "name": "Name",
+            "movie": "movie"
+        }
+    }
+}
+

@@ -1,0 +1,26 @@
+{
+    "moviefanApp": {
+        "movie" : {
+            "home": {
+                "title": "Movies",
+                "createLabel": "Create a new Movie",
+                "createOrEditLabel": "Create or edit a Movie"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Movie {{ id }}?"
+            },
+            "detail": {
+                "title": "Movie"
+            },
+            "fan": {
+                "title": "Movie Fan",
+                "addtofav": "Add to Favorites",
+                "removefromfav": "Remove from Favorites"
+            },
+            "title": "Title",
+            "rating": "Rating",
+            "director": "Director",
+            "movie": "movie"
+        }
+    }
+}

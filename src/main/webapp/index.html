@@ -1,0 +1,278 @@
+<!doctype html>
+<html class="no-js">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>moviefan</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css assets/styles/vendor.css -->
+    <!-- bower:css -->
+    <!--basic styles-->
+
+    <!--        <link href="assets/ace/bootstrap.min.css" rel="stylesheet" />
+            <link href="assets/ace/bootstrap-responsive.min.css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="assets/ace/font-awesome.min.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="assets/ace/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+
+    <!--page specific plugin styles-->
+
+    <!--fonts-->
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <!--ace styles-->
+
+    <link rel="stylesheet" href="assets/ace/ace.min.css" />
+    <link rel="stylesheet" href="assets/ace/ace-responsive.min.css" />
+    <link rel="stylesheet" href="assets/ace/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/ace/ace-ie.min.css" />
+    <![endif]-->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css assets/styles/main.css -->
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="moviefanApp">
+<!--[if lt IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<!--        <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>-->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a href="#" class="brand">
+                <small>
+                    <i class="icon-leaf"></i>
+                    Movie Fan
+                </small>
+            </a><!--/.brand-->
+            <ul class="nav ace-nav pull-right" ng-controller="LanguageController">
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <span translate="global.menu.language">Language</span>
+
+                        <i class="icon-caret-down"></i>
+                    </a>
+
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                        <li active-menu="{{language}}" ng-repeat="language in languages">
+                            <a href="" ng-click="changeLanguage(language)">{{'language.' + language| translate}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div><!--/.container-fluid-->
+
+    </div><!--/.navbar-inner-->
+</div>
+
+<div class="main-container container-fluid" ng-controller="NavbarController" ng-switch="isAuthenticated()">
+    <a class="menu-toggler" id="menu-toggler" href="#">
+        <span class="menu-text"></span>
+    </a>
+
+    <div class="sidebar" id="sidebar">
+
+        <ul class="nav nav-list">
+            <li ui-sref-active="active" >
+                <a ui-sref="home">
+                    <i class="icon-dashboard"></i>
+                    <span class="menu-text" translate="global.menu.home"> Home </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="true" has-role="ROLE_ADMIN">
+                <a ui-sref="movie">
+                    <i class="icon-picture"></i>
+                    <span class="menu-text" translate="global.menu.entities.movie"> Movies </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="true" has-role="ROLE_ADMIN">
+                <a ui-sref="genre">
+                    <i class="icon-desktop"></i>
+                    <span class="menu-text" translate="global.menu.entities.genre"> Genres </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="true" has-role="ROLE_USER">
+                <a ui-sref="movieFan">
+                    <i class="icon-picture"></i>
+                    <span class="menu-text" translate="global.menu.account.moviefav"> Favorite Movies </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="true">
+                <a ui-sref="settings">
+                    <i class="icon-cog"></i>
+                    <span class="menu-text" translate="global.menu.account.settings"> Settings </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="true">
+                <a ui-sref="password">
+                    <i class="icon-lock"></i>
+                    <span class="menu-text" translate="global.menu.account.password"> Password </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="false">
+                <a ui-sref="login">
+                    <i class="icon-user"></i>
+                    <span class="menu-text" translate="global.menu.account.login"> Login </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="false">
+                <a ui-sref="register">
+                    <i class="icon-plus"></i>
+                    <span class="menu-text" translate="global.menu.account.register"> Register </span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active" ng-switch-when="true">
+                <a href="" ng-click="logout()">
+                    <i class="icon-off"></i>
+                    <span class="menu-text" translate="global.menu.account.logout"> Log Out </span>
+                </a>
+            </li>
+
+
+        </ul><!--/.nav-list-->
+
+        <div class="sidebar-collapse" id="sidebar-collapse">
+            <i class="icon-double-angle-left"></i>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+
+        <div class="container">
+            <div class="well" ui-view="content"></div>
+
+
+        </div>
+
+
+    </div><!--/.main-content-->
+</div><!--/.main-container-->
+
+<!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>-->
+
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+
+<script src="bower_components/modernizr/modernizr.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!--<script src="assets/ace/bootstrap.min.js"></script>-->
+<script src="assets/ace/ace-elements.min.js"></script>
+<script src="assets/ace/ace.min.js"></script>
+<!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
+<script src="scripts/app/app.js"></script>
+<script src="scripts/app/app.constants.js"></script>
+<script src="scripts/components/auth/auth.service.js"></script>
+<script src="scripts/components/auth/principal.service.js"></script>
+<script src="scripts/components/auth/authority.directive.js"></script>
+<script src="scripts/components/auth/services/account.service.js"></script>
+<script src="scripts/components/auth/services/activate.service.js"></script>
+<script src="scripts/components/auth/services/password.service.js"></script>
+<script src="scripts/components/auth/services/register.service.js"></script>
+<script src="scripts/components/form/form.directive.js"></script>
+<script src="scripts/components/form/pager.directive.js"></script>
+<script src="scripts/components/form/pagination.directive.js"></script>
+<script src="scripts/components/admin/audits.service.js"></script>
+<script src="scripts/components/admin/logs.service.js"></script>
+<script src="scripts/components/admin/configuration.service.js"></script>
+<script src="scripts/components/admin/monitoring.service.js"></script>
+<script src="scripts/components/navbar/navbar.directive.js"></script>
+<script src="scripts/components/navbar/navbar.controller.js"></script>
+<script src="scripts/components/user/user.service.js"></script>
+<script src="scripts/components/util/truncate.filter.js"></script>
+<script src="scripts/components/util/base64.service.js"></script>
+<script src="scripts/components/util/parse-links.service.js"></script>
+<script src="scripts/components/util/dateutil.service.js"></script>
+<script src="scripts/app/account/account.js"></script>
+<script src="scripts/app/account/activate/activate.js"></script>
+<script src="scripts/app/account/activate/activate.controller.js"></script>
+<script src="scripts/app/account/login/login.js"></script>
+<script src="scripts/app/account/login/login.controller.js"></script>
+<script src="scripts/app/account/logout/logout.js"></script>
+<script src="scripts/app/account/logout/logout.controller.js"></script>
+<script src="scripts/app/account/password/password.js"></script>
+<script src="scripts/app/account/password/password.controller.js"></script>
+<script src="scripts/app/account/password/password.directive.js"></script>
+<script src="scripts/app/account/register/register.js"></script>
+<script src="scripts/app/account/register/register.controller.js"></script>
+<script src="scripts/app/account/settings/settings.js"></script>
+<script src="scripts/app/account/settings/settings.controller.js"></script>
+<script src="scripts/app/account/reset/finish/reset.finish.controller.js"></script>
+<script src="scripts/app/account/reset/finish/reset.finish.js"></script>
+<script src="scripts/app/account/reset/request/reset.request.controller.js"></script>
+<script src="scripts/app/account/reset/request/reset.request.js"></script>
+<script src="scripts/app/admin/admin.js"></script>
+<script src="scripts/app/admin/audits/audits.js"></script>
+<script src="scripts/app/admin/audits/audits.controller.js"></script>
+<script src="scripts/app/admin/configuration/configuration.js"></script>
+<script src="scripts/app/admin/configuration/configuration.controller.js"></script>
+<script src="scripts/app/admin/docs/docs.js"></script>
+<script src="scripts/app/admin/health/health.js"></script>
+<script src="scripts/app/admin/health/health.controller.js"></script>
+<script src="scripts/app/admin/logs/logs.js"></script>
+<script src="scripts/app/admin/logs/logs.controller.js"></script>
+<script src="scripts/app/admin/metrics/metrics.js"></script>
+<script src="scripts/app/admin/metrics/metrics.controller.js"></script>
+<script src="scripts/app/entities/entity.js"></script>
+<script src="scripts/app/error/error.js"></script>
+<script src="scripts/app/main/main.js"></script>
+<script src="scripts/app/main/main.controller.js"></script>
+<script src="scripts/components/language/language.service.js"></script>
+<script src="scripts/components/language/language.controller.js"></script>
+<script src="scripts/components/auth/provider/auth.xauth.service.js"></script>
+<script src="scripts/app/entities/genre/genre.js"></script>
+<script src="scripts/app/entities/genre/genre.controller.js"></script>
+<script src="scripts/app/entities/genre/genre-detail.controller.js"></script>
+<script src="scripts/components/entities/genre/genre.service.js"></script>
+<script src="scripts/app/entities/movie/movie.js"></script>
+<script src="scripts/app/entities/movie/movie.controller.js"></script>
+<script src="scripts/app/entities/movie/movie-detail.controller.js"></script>
+<script src="scripts/components/entities/movie/movie.service.js"></script>
+<!-- endbuild -->
+</body>
+</html>

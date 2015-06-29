@@ -1,0 +1,42 @@
+<div class="row-fluid">
+    <h2 translate="moviefanApp.movie.fan.title">Movie Fan</h2>
+    <div class="span12">
+        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th translate="moviefanApp.movie.title">Title</th>
+                <th translate="moviefanApp.movie.rating">Rating</th>
+                <th translate="moviefanApp.movie.director">Director</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="movie in movies">
+
+                <td><a ui-sref="movieDetail({id:movie.id})">{{movie.id}}</a></td>
+                <td>{{movie.title}}</td>
+                <td>{{movie.rating}}</td>
+                <td>{{movie.director}}</td>
+
+                <td>
+                    <div class="hidden-phone visible-desktop btn-group">
+                        <button type="submit" ng-click="addToFav(movie.id)" class="btn btn-mini btn-success" ng-show="favmoviesList.indexOf(movie.id) < 0">
+                            <i class="icon-ok bigger-120"></i>
+                        </button>
+
+                        <button  type="submit" ng-click="removeFromFav(movie.id)" class="btn btn-mini btn-danger" ng-show="favmoviesList.indexOf(movie.id) >= 0">
+                            <i class="icon-trash bigger-120"></i>
+                        </button>
+
+                    </div>
+
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div><!--/span-->
+</div><!--/row-->
