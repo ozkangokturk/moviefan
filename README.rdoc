@@ -1,0 +1,43 @@
+== README
+
+=AngularJS (v.1.4.0) + Rails (v.4.2.1) port of MovieFan application
+
+==Single Web page application:
+
+*   Responsive Web Design
+*   HTML5 Boilerplate
+*   Twitter Bootstrap
+*   AngularJS
+*   Compatible with IE9+ and modern browsers
+*   Full internationalization support with Angular Translate
+*   Optional Compass / Sass support for CSS design
+*   Optional WebSocket support with Spring Websocket
+
+==Tools and Libraries
+*   Spring Boot for easy application configuration
+*   Spring Security
+*   Spring MVC REST + Jackson
+*   Optional WebSocket support with Spring Websocket
+*   Spring Data JPA + Bean Validation
+*   Database updates with Liquibase
+
+==Demo (Heroku)
+http://moviefan.herokuapp.com
+
+
+
+==Local installation
+1) Open Terminal
+
+	git clone https://github.com/ozkangokturk/moviefan.git
+	cd moviefan
+	mvn clean install spring-boot:run
+
+2) Open http://localhost:8080/ using [Chrome](https://www.google.com/chrome)
+
+== Contributors
+- [Ziya Ozkan Gokturk](https://github.com/ozkangokturk)
+
+
+==Author
+Ziya Ozkan Gokturk // (http://www.ozkangokturk.com)
