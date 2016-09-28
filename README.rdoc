@@ -1,6 +1,6 @@
 == README
 
-=AngularJS (v.1.4.0) + Rails (v.4.2.1) port of MovieFan application
+=AngularJS (v.1.4.0) + SpringBoot (v.1.2.4) port of MovieFan application
 
 ==Single Web page application:
 
