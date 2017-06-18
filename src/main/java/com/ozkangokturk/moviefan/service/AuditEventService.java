@@ -38,4 +38,8 @@ public class AuditEventService {
 
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
+
+    public void deneme() {
+        System.out.println("");
+    }
 }
